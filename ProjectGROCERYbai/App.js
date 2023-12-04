@@ -2,8 +2,11 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Login, Recovery, Register, Welcome, Home} from "./Components";
+import { 
+  Login, Recovery, Register, Welcome, Home, List, AddProduct, Cart, Profile
+} from "./Components";
 import { SafeAreaView } from 'react-native-safe-area-context';
+import Add from './Components/AddProduct';
 
 const Stack = createNativeStackNavigator();
 export default function App() {
@@ -54,6 +57,41 @@ export default function App() {
             headerShown: false
           }}
           />
+
+          <Stack.Screen
+          name="List"
+          component={List}
+          options={{
+            headerShown: false
+          }}
+          />  
+
+<Stack.Screen
+          name="AddProduct"
+          component={Add}
+          options={{
+            headerShown: false
+          }}
+          />  
+
+<Stack.Screen
+          name="Cart"
+          component={Cart}
+          options={{
+            headerShown: false
+          }}
+          />  
+
+<Stack.Screen
+          name="Profile"
+          component={Profile}
+          options={{
+            headerShown: false
+          }}
+          />  
+
+
+
 
 
       </Stack.Navigator>
