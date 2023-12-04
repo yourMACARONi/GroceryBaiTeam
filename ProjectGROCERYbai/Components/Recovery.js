@@ -30,7 +30,7 @@ const Recover = ({navigation}) => {
               fontSize: 40,
               fontWeight: "bold",
               marginVertical: 12,
-              marginHorizontal: 25,
+              marginHorizontal: 65,
               color: COLORS.black,
             }}
           >

@@ -19,7 +19,7 @@ const Home = ({ navigation }) => {
         <View>
         
           <Image source={require("../assets/gorcerybai.png")}
-          style={{height:500, width:520, marginTop:200, }}
+          style={{height:500, width:420, marginTop:200, }}
           />
           {/* <BlurView
         blurType="light"

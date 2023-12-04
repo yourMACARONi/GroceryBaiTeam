@@ -15,14 +15,14 @@ const Welcome = ({ navigation }) => {
     >
       <View style={{ flex: 1, alignContent: "center" }}>
         <View>
-          <Image source={require("../assets/LogoIntrogrocerybai.png")}></Image>
+        <Image source={require("../assets/LogoIntrogrocerybai.png")}style ={{height: 400, width: 420, marginTop: 30}}/>
         </View>
         {/* content */}
         <View
           style={{
             paddingHorizontal: 22,
             position: "absolute",
-            top: 440,
+            top: 390,
             width: "100%",
           }}
         >
