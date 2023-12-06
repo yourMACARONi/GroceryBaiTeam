@@ -16,13 +16,16 @@ const Welcome = ({ navigation }) => {
         <Image
           source={require("../assets/GBtext.png")}
           style={{
-            height: 250,
-            width: 480,
+            height: 300,
+            width: 400,
           }}
         ></Image>
         <Image
           source={require("../assets/finaGB.png")}
-          style={{ height: 650, width: 520 }}
+          style={{ 
+            height: 600, 
+            width: 450,
+          }}
         ></Image>
       </View>
 
@@ -31,7 +34,7 @@ const Welcome = ({ navigation }) => {
         onPress={() => navigation.navigate("Login")}
         style={{
           marginTop: "auto",
-          marginHorizontal: 100,
+          marginHorizontal: 50,
           width: 280,
           padding: 60,
           borderRadius: 30,

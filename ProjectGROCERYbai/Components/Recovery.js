@@ -89,7 +89,7 @@ const Recover = ({navigation}) => {
             title="SUBMIT"
             onPress={() => Alert.alert("PUTANGINA MO APAKA BUBU MO CHECK YOUR MAIL", "KINALIMUTAN ANG PASSWORD AMPOTA HAHAHHAH")}
             style={{
-              marginHorizontal: 75,
+              marginHorizontal: 35,
               width: 280,
               padding: 60,
               borderRadius: 30,

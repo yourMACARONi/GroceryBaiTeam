@@ -25,10 +25,10 @@ const Register = ({ navigation }) => {
 
             <Text
               style={{
-                fontSize: 37,
+                fontSize: 35,
                 fontWeight: "bold",
                 marginVertical: 12,
-                marginHorizontal: 85,
+                marginHorizontal: 60,
                 color: COLORS.black,
               }}
             >
@@ -242,7 +242,7 @@ const Register = ({ navigation }) => {
             title="SIGN UP"
             onPress={() => console.log("pressed")}
             style={{
-              marginHorizontal: 50,
+              marginHorizontal: 10,
               width: 280,
               padding: 60,
               borderRadius: 30,
