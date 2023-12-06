@@ -5,49 +5,53 @@ import COLORS from "../Constants/colors";
 import { Ionicons } from "@expo/vector-icons";
 import { useState } from "react";
 import Checkbox from "expo-checkbox";
-import Button from "../Buttons/Button";
+import Button from "../Buttons/loginButton";
 import { Pressable } from "react-native";
 
-const Register = ({navigation}) => {
+const Register = ({ navigation }) => {
   const [passwordShown, setPasswordShown] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.white}}>
-      <View style={{ flex: 1, marginHorizontal: 22 }}>
-      <View >
+    <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.white }}>
+      <View style={{ flex: 1, marginHorizontal: 50 }}>
+        <View>
+          <View style={{ flexDirection: "row" }}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate("Welcome")}
+              style={{ marginTop: 20 }}
+            >
+              <Ionicons name="arrow-undo" size={24} color={COLORS.black} />
+            </TouchableOpacity>
 
-<View style={{flexDirection: 'row'}} >
-
-  <TouchableOpacity 
-  onPress={() => navigation.navigate("Welcome")}
-  style={{marginTop: 20,}} >
-<Ionicons name="arrow-undo" size={24} color={COLORS.black}/>
-
-</TouchableOpacity>
-   
-   
-  
-  <Text
-    style={{
-      fontSize: 37,
-      fontWeight: "bold",
-      marginVertical: 12,
-      marginHorizontal: 85,
-      color: COLORS.black,
-    }}
-  >
-    Sign Up
-  </Text>
-</View>
-
-</View>
-<View style={{flex:1, alignItems:'center', justifyContent:'center', marginTop:120}} >
-          <Image source={require("../assets/gorcerybai.png")} 
-          style={{height:200, width:220,}}></Image>
+            <Text
+              style={{
+                fontSize: 37,
+                fontWeight: "bold",
+                marginVertical: 12,
+                marginHorizontal: 85,
+                color: COLORS.black,
+              }}
+            >
+              Sign Up
+            </Text>
+          </View>
         </View>
         <View
           style={{
-            marginTop: 60
+            flex: 1,
+            alignItems: "center",
+            justifyContent: "center",
+            marginTop: 140,
+          }}
+        >
+          <Image
+            source={require("../assets/gorcerybai.png")}
+            style={{ height: 300, width: 320 }}
+          ></Image>
+        </View>
+        <View
+          style={{
+            marginTop: 60,
           }}
         >
           <View style={{ marginBottom: 1 }}>
@@ -55,10 +59,9 @@ const Register = ({navigation}) => {
               style={{
                 fontSize: 20,
                 fontWeight: 400,
-                
               }}
             >
-              Recovery email
+              Email
             </Text>
 
             <View
@@ -85,53 +88,49 @@ const Register = ({navigation}) => {
           </View>
 
           <View
-          style={{
-            marginBottom: 1
-          }}
-        >
-          <View style={{ marginBottom: 1 }}>
-            <Text
-              style={{
-                fontSize: 20,
-                fontWeight: 400,
-                
-              }}
-            >
-              Username
-            </Text>
+            style={{
+              marginBottom: 1,
+            }}
+          >
+            <View style={{ marginBottom: 1 }}>
+              <Text
+                style={{
+                  fontSize: 20,
+                  fontWeight: 400,
+                }}
+              >
+                Username
+              </Text>
 
-            <View
-              style={{
-                width: "100%",
-                height: 48,
-                borderColor: COLORS.black,
-                borderWidth: 1,
-                borderRadius: 5,
-                alignItems: "center",
-                justifyContent: "center",
-                paddingLeft: 22,
-              }}
-            >
-              <TextInput
-                placeholder="Enter your username"
-                placeholderTextColor={COLORS.black}
-                keyboardType="email-address"
+              <View
                 style={{
                   width: "100%",
+                  height: 48,
+                  borderColor: COLORS.black,
+                  borderWidth: 1,
+                  borderRadius: 5,
+                  alignItems: "center",
+                  justifyContent: "center",
+                  paddingLeft: 22,
                 }}
-              />
+              >
+                <TextInput
+                  placeholder="Enter your username"
+                  placeholderTextColor={COLORS.black}
+                  keyboardType="email-address"
+                  style={{
+                    width: "100%",
+                  }}
+                />
+              </View>
             </View>
           </View>
-          </View>
-
-          
 
           <View style={{ marginBottom: 1 }}>
             <Text
               style={{
                 fontSize: 20,
                 fontWeight: 400,
-                
               }}
             >
               Password
@@ -178,7 +177,6 @@ const Register = ({navigation}) => {
               style={{
                 fontSize: 20,
                 fontWeight: 400,
-                
               }}
             >
               Re-Enter Password
@@ -223,153 +221,61 @@ const Register = ({navigation}) => {
           <View
             style={{
               flexDirection: "row",
-             
             }}
           >
             <Checkbox
-              style={{ marginRight: 8, marginTop:11 }}
+              style={{ marginRight: 8, marginTop: 11 }}
               value={isChecked}
               onValueChange={setIsChecked}
               color={isChecked ? COLORS.green : undefined}
             />
-            <Text style={{marginTop:11, fontSize:16}} >I agree to the terms and conditions</Text>
+
+            <Text style={{ marginTop: 11, fontSize: 16 }}>
+              I agree to the terms and conditions
+            </Text>
+          </View>
+          <View>
+            <Text></Text>
           </View>
 
           <Button
-            title="Sign Up"
-            filled
+            title="SIGN UP"
+            onPress={() => console.log("pressed")}
             style={{
-              marginTop: 18,
-              marginBottom: 4,
+              marginHorizontal: 50,
+              width: 280,
+              padding: 60,
+              borderRadius: 30,
             }}
           />
+          
+        </View>
 
-          <View
-            style={{
-              flexDirection: "column",
-              alignItems: "center",
-              marginVertical: 20,
-              marginTop: 10
-            }}
-          >
-           
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "center",
+            marginVertical: 22,
+          }}
+        >
+          <Text style={{ fontSize: 16, color: COLORS.black }}>
+            Already have an account?
+          </Text>
+          <Pressable onPress={() => navigation.navigate("Login")}>
             <Text
               style={{
                 fontSize: 16,
+                color: COLORS.green1,
+                fontWeight: "bold",
+                marginLeft: 6,
               }}
             >
-              Or Sign up with
+              Login
             </Text>
-            
-
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "center",
-                marginTop: 10
-              }}
-            >
-              <TouchableOpacity
-                onPress={() => console.log("Pressed")}
-                style={{
-                  flex: 1,
-                  alignItems: "center",
-                  justifyContent: "center",
-                  flexDirection: "row",
-                  height: 52,
-                  borderWidth: 1,
-                  borderColor: COLORS.grey,
-                  marginRight: 4,
-                  borderRadius: 10,
-                }}
-              >
-                <Image
-                  source={require("../assets/facebook.png")}
-                  style={{
-                    height: 36,
-                    width: 36,
-                    marginRight: 8,
-                  }}
-                  resizeMode="contain"
-                />
-
-                <Text>Facebook</Text>
-              </TouchableOpacity>
-
-              {/* <TouchableOpacity
-                onPress={() => console.log("Pressed")}
-                style={{
-                  flex: 1,
-                  alignItems: "center",
-                  justifyContent: "center",
-                  flexDirection: "row",
-                  height: 52,
-                  borderWidth: 1,
-                  borderColor: COLORS.grey,
-                  marginRight: 4,
-                  borderRadius: 10,
-                }}
-              >
-                <Image
-                  source={require("../assets/google.png")}
-                  style={{
-                    height: 36,
-                    width: 36,
-                    marginRight: 8,
-                  }}
-                  resizeMode="contain"
-                />
-
-                <Text>Google</Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity
-                onPress={() => console.log("Pressed")}
-                style={{
-                  flex: 1,
-                  alignItems: "center",
-                  justifyContent: "center",
-                  flexDirection: "row",
-                  height: 52,
-                  borderWidth: 1,
-                  borderColor: COLORS.grey,
-                  marginRight: 4,
-                  borderRadius: 10,
-                }}
-              >
-                <Image
-                  source={require("../assets/discord.png")}
-                  style={{
-                    height: 36,
-                    width: 36,
-                    marginRight: 8,
-                  }}
-                  resizeMode="contain"
-                />
-
-                <Text>Discord</Text>
-              </TouchableOpacity> */}
-            </View>
-
-            <View style={{
-                    flexDirection: "row",
-                    justifyContent: "center",
-                    marginVertical: 22
-                }}>
-                    <Text style={{ fontSize: 16, color: COLORS.black }}>Already have an account?</Text>
-                    <Pressable
-                        onPress={() => navigation.navigate("Login")}
-                    >
-                        <Text style={{
-                            fontSize: 16,
-                            color: COLORS.primary,
-                            fontWeight: "bold",
-                            marginLeft: 6
-                        }}>Login</Text>
-                    </Pressable>
-                </View>
-
-          </View>
+          </Pressable>
+        </View>
+        <View>
+          <Text></Text>
         </View>
         
       </View>

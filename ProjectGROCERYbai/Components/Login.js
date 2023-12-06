@@ -4,8 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import COLORS from "../Constants/colors";
 import { Ionicons } from "@expo/vector-icons";
 import { useState } from "react";
-import Checkbox from "expo-checkbox";
-import Button from "../Buttons/Button";
+import Button from "../Buttons/loginButton";
 import { Pressable } from "react-native";
 
 const Login = ({navigation}) => {
@@ -13,7 +12,7 @@ const Login = ({navigation}) => {
   const [isChecked, setIsChecked] = useState(false);
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.white }}>
-      <View style={{ flex: 1, marginHorizontal: 22 }}>
+      <View style={{ flex: 1, marginHorizontal: 50 }}>
       <View >
 
 <View style={{flexDirection: 'row'}} >
@@ -50,12 +49,12 @@ const Login = ({navigation}) => {
 
           <View
           style={{
-            marginTop: 70
+            marginTop: 50
 
 
           }}
         >
-          <View style={{ marginBottom: 1 }}>
+          <View style={{ marginBottom: 10}}>
             <Text
               style={{
                 fontSize: 20,
@@ -93,7 +92,7 @@ const Login = ({navigation}) => {
 
           
 
-          <View style={{ marginBottom: 1 }}>
+          <View style={{ marginBottom: 10 }}>
             <Text
               style={{
                 fontSize: 20,
@@ -140,199 +139,41 @@ const Login = ({navigation}) => {
             </View>
           </View>
 
-          <View style={{ marginBottom: 1 }}>
-            <Text
-              style={{
-                fontSize: 20,
-                fontWeight: 400,
-                
-              }}
-            >
-              Re-Enter Password
-            </Text>
-
-            <View
-              style={{
-                width: "100%",
-                height: 48,
-                borderColor: COLORS.black,
-                borderWidth: 1,
-                borderRadius: 5,
-                alignItems: "center",
-                justifyContent: "center",
-                paddingLeft: 22,
-              }}
-            >
-              <TextInput
-                placeholder="Re-Enter your password"
-                placeholderTextColor={COLORS.black}
-                secureTextEntry={!passwordShown}
-                style={{
-                  width: "100%",
-                }}
-              />
-              <TouchableOpacity
-                onPress={() => setPasswordShown(!passwordShown)}
-                style={{
-                  position: "absolute",
-                  right: 12,
-                }}
-              >
-                {passwordShown == false ? (
-                  <Ionicons name="eye-off" size={24} color={COLORS.black} />
-                ) : (
-                  <Ionicons name="eye" size={24} color={COLORS.black} />
-                )}
-              </TouchableOpacity>
-            </View>
-          </View>
-
-          <View
-            style={{
-              flexDirection: "row",
-              marginVertical: 6,
-              marginTop: 10
-            }}
-          >
-            <Checkbox
-              style={{ marginRight: 8 }}
-              value={isChecked}
-              onValueChange={setIsChecked}
-              color={isChecked ? COLORS.green : undefined}
-            />
-            <Text style={{fontSize: 16}}>Remember me</Text>
-          </View>
-
           <View style={{
                     flexDirection: "row",
                     marginVertical: 10
                 }}>
-                    <Text style={{ fontSize: 16, color: COLORS.black }}>Forgot Password?</Text>
+                    
                     <Pressable
                         onPress={() => navigation.navigate("Recovery")}
                     >
                         <Text style={{
                             fontSize: 16,
-                            color: COLORS.primary,
+                            color: COLORS.green1,
                             fontWeight: "bold",
-                            marginLeft: 6
-                        }}>Click Here</Text>
+                            marginLeft: 6,
+                          
+                        }}>FORGOT PASSWORD?</Text>
                     </Pressable>
                 </View>
 
-          <Button onPress={() => navigation.navigate("Home")}
-            title="Sign In"
-            filled
-            
-          />
+                <View>
+                  <Text></Text>
+                </View>
+      
 
-          <View
-            style={{
-              flexDirection: "column",
-              alignItems: "center",
-              marginVertical: 20,
-              marginTop: 20
-            }}
-          >
-           
-            <Text
-              style={{
-                fontSize: 16,
-                
-              }}
-            >
-             Or Sign in with
-            </Text>
-            
-
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "center",
-                marginTop: 20
-              }}
-            >
-              <TouchableOpacity
-                onPress={() => console.log("Pressed")}
-                style={{
-                  flex: 1,
-                  alignItems: "center",
-                  justifyContent: "center",
-                  flexDirection: "row",
-                  height: 52,
-                  borderWidth: 1,
-                  borderColor: COLORS.grey,
-                  marginRight: 4,
-                  borderRadius: 10,
-                }}
-              >
-                <Image
-                  source={require("../assets/facebook.png")}
-                  style={{
-                    height: 36,
-                    width: 36,
-                    marginRight: 8,
-                  }}
-                  resizeMode="contain"
-                />
-
-                <Text>Facebook</Text>
-              </TouchableOpacity>
-
-              {/* <TouchableOpacity
-                onPress={() => console.log("Pressed")}
-                style={{
-                  flex: 1,
-                  alignItems: "center",
-                  justifyContent: "center",
-                  flexDirection: "row",
-                  height: 52,
-                  borderWidth: 1,
-                  borderColor: COLORS.grey,
-                  marginRight: 4,
-                  borderRadius: 10,
-                }}
-              >
-                <Image
-                  source={require("../assets/google.png")}
-                  style={{
-                    height: 36,
-                    width: 36,
-                    marginRight: 8,
-                  }}
-                  resizeMode="contain"
-                />
-
-                <Text>Google</Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity
-                onPress={() => console.log("Pressed")}
-                style={{
-                  flex: 1,
-                  alignItems: "center",
-                  justifyContent: "center",
-                  flexDirection: "row",
-                  height: 52,
-                  borderWidth: 1,
-                  borderColor: COLORS.grey,
-                  marginRight: 4,
-                  borderRadius: 10,
-                }}
-              >
-                <Image
-                  source={require("../assets/discord.png")}
-                  style={{
-                    height: 36,
-                    width: 36,
-                    marginRight: 8,
-                  }}
-                  resizeMode="contain"
-                />
-
-                <Text>Discord</Text>
-              </TouchableOpacity> */}
-            </View>
+                <Button
+        title="SIGN IN" 
+        onPress={() => navigation.navigate("Home")}
+        style={{
+          marginTop: "auto",
+          marginHorizontal: 75,
+          borderRadius: 30,
+          
+          
+        }}
+      />
+      
 
             <View style={{
                     flexDirection: "row",
@@ -345,17 +186,20 @@ const Login = ({navigation}) => {
                     >
                         <Text style={{
                             fontSize: 16,
-                            color: COLORS.primary,
+                            color: COLORS.green1,
                             fontWeight: "bold",
-                            marginLeft: 6
+                            marginLeft: 6,
+                            marginBottom:110
                         }}>Register Here</Text>
                     </Pressable>
                 </View>
+                
+                
 
           </View>
 
          
-        </View>
+        {/* </View> */}
     </SafeAreaView>
   );
 };

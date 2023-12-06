@@ -4,7 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import COLORS from "../Constants/colors";
 import { Ionicons } from "@expo/vector-icons";
 import { useState } from "react";
-import Button from "../Buttons/Button";
+import Button from "../Buttons/loginButton";
 import { Recovery } from ".";
 
 const Recover = ({navigation}) => {
@@ -61,6 +61,7 @@ const Recover = ({navigation}) => {
 
             <View
               style={{
+              
                 width: "100%",
                 height: 48,
                 borderColor: COLORS.black,
@@ -82,52 +83,16 @@ const Recover = ({navigation}) => {
             </View>
           </View>
 
-          
-           
-
-            {/* <View
-              style={{
-                width: "100%",
-                height: 48,
-                borderColor: COLORS.black,
-                borderWidth: 1,
-                borderRadius: 5,
-                alignItems: "center",
-                justifyContent: "center",
-                paddingLeft: 22,
-              }}
-            >
-              <TextInput
-                placeholder="Enter your new password"
-                placeholderTextColor={COLORS.black}
-                secureTextEntry={!passwordShown}
-                style={{
-                  width: "100%",
-                }}
-              />
-              <TouchableOpacity
-                onPress={() => setPasswordShown(!passwordShown)}
-                style={{
-                  position: "absolute",
-                  right: 12,
-                }}
-              >
-                {passwordShown == false ? (
-                  <Ionicons name="eye-off" size={24} color={COLORS.black} />
-                ) : (
-                  <Ionicons name="eye" size={24} color={COLORS.black} />
-                )}
-              </TouchableOpacity>
-            </View> */}
           </View>
 
           <Button
-            onPress={() => Alert.alert("Check your email")}
-            title="Submit"
-            filled
+            title="SUBMIT"
+            onPress={() => Alert.alert("PUTANGINA MO APAKA BUBU MO CHECK YOUR MAIL", "KINALIMUTAN ANG PASSWORD AMPOTA HAHAHHAH")}
             style={{
-              marginTop: 18,
-              marginBottom: 4,
+              marginHorizontal: 75,
+              width: 280,
+              padding: 60,
+              borderRadius: 30,
             }}
           />
 
