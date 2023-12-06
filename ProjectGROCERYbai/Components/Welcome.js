@@ -23,7 +23,7 @@ const Welcome = ({ navigation }) => {
         <Image
           source={require("../assets/finaGB.png")}
           style={{ 
-            height: 600, 
+            height: 530, 
             width: 450,
           }}
         ></Image>
