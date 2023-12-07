@@ -23,14 +23,24 @@ const Button = (props) => {
 
 const styles = StyleSheet.create({
     button: {
+        textAlign: 'center',
         paddingBottom: 16,
         paddingVertical: 10,
         borderColor: COLORS.green1,
         borderWidth: 1,
         borderRadius: 12,
         justifyContent: 'center',
-        alignItems:'center'
-    }
+        alignItems:'center',
+        shadowColor: "#000",
+        shadowOffset: {
+          width: 0,
+          height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+
+        elevation: 5,
+            }
 })
 
 export default Button

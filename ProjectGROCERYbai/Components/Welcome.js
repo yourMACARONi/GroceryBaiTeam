@@ -28,6 +28,10 @@ const Welcome = ({ navigation }) => {
           }}
         ></Image>
       </View>
+      
+      <View style={{
+        alignItems: 'center'
+      }}>
 
       <Button
         title="Get Started"
@@ -40,6 +44,7 @@ const Welcome = ({ navigation }) => {
           borderRadius: 30,
         }}
       />
+      </View>
 
       <View
         style={{
