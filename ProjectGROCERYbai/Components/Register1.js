@@ -7,13 +7,14 @@ export default function Login1() {
      return (
           <KeyboardAvoidingView style={style.container} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
                <View style={{margin: 100}}>
-                    <Text variant='titleLarge' style={style.boldText}>Sign In</Text>
+                    <Text variant='titleLarge' style={style.boldText}>Sign Up</Text>
                </View>
 
                <View>
                     <Image source={require('../assets/gorcerybai.png')} style={{height: 250, width: 250}}></Image>
                </View>
                
+
                <View style={style.inputContainer}>
                     <View>
                          <TextInput

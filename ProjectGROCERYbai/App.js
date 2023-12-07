@@ -11,6 +11,8 @@ import { PaperProvider } from 'react-native-paper';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import Login1 from './Components/Login1';
+import Product from './Components/ProductInfo';
+
 
 
 const Stack = createNativeStackNavigator();
@@ -25,7 +27,7 @@ export default function App() {
           >
             <Stack.Screen 
               name = "Welcome"
-              component ={Login1}
+              component ={Home}
               options = {{
                 headerShown: false
               }}

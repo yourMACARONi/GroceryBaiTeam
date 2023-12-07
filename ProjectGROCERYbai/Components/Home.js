@@ -7,6 +7,10 @@ import { Ionicons } from "@expo/vector-icons";
 import { TouchableOpacity, ScrollView } from "react-native";
 import { SearchBar } from "@rneui/base";
 
+import Product from "./ProductInfo";
+
+import Container from "./Container";
+
 // import { BlurView } from "@react-native-community/blur";
 
 const Home = ({ navigation }) => {
@@ -53,6 +57,24 @@ const Home = ({ navigation }) => {
           value={search}
         />
       </View>
+
+      <ScrollView>
+        <View style={{
+                    flex: 3, 
+                    flexDirection: 'row', 
+                    justifyContent:'flex-start', 
+                    flexWrap:'wrap', 
+                    justifyContent: 'center'
+        }}>
+
+        <Container name="Nutella Spread Hazelnut | 350g" age="100"/>
+        <Container name="Nutella Spread Hazelnut | 350g" age="100"/>
+        <Container name="Nutella Spread Hazelnut | 350g" age="100"/>
+
+        </View>
+      </ScrollView>
+
+
 
       {/* Category Selection */}
 
