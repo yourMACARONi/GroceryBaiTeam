@@ -12,6 +12,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import Login1 from './Components/Login1';
 import Product from './Components/ProductInfo';
+import Home1 from './Components/Home1';
 
 
 
@@ -27,7 +28,7 @@ export default function App() {
           >
             <Stack.Screen 
               name = "Welcome"
-              component ={Home}
+              component ={Home1}
               options = {{
                 headerShown: false
               }}
