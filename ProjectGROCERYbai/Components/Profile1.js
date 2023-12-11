@@ -88,7 +88,7 @@ export default function Profile1( { navigation }) {
                                    <TouchableOpacity>
                                         <Text style={{marginLeft: 30, color:'red'}} variant='titleMedium' onPress={async () => {
                                              const token = await SecureStore.setItemAsync('token', '')
-                                             navigation.replace('Login')
+                                             navigation.pop()
                                         }}>Logout</Text>
                                    </TouchableOpacity>
                               </View>

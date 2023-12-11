@@ -15,6 +15,7 @@ import Home1 from './Components/Home1';
 import Profile1 from './Components/Profile1';
 import Product from './Components/Container/Product'
 import Search from './Components/Container/Search';
+import Planner from './Components/Container/WeeklyPlanner/Planner';
 
 
 const Stack = createNativeStackNavigator();
@@ -29,7 +30,7 @@ export default function App() {
           >
             <Stack.Screen 
               name = "Welcome"
-              component ={Profile1}
+              component ={Planner}
               options = {{
                 headerShown: false
               }}
