@@ -37,7 +37,7 @@ export default function App() {
 
             <Stack.Screen 
               name = "Login"
-              component ={Login}
+              component ={Login1}
               options = {{
                 headerShown: false
               }}
