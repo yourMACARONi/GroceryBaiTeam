@@ -27,8 +27,13 @@ export default function Profile1( { navigation }) {
 
                setUser(message)
           }
+          
+          async function Check() {
+               if (await SecureStore.getItemAsync('token') == '') {navigation.replace('Login'); return Alert.alert("Token has been expired", "Please Login Again")}
+               userMe()
+          }
 
-          userMe()
+          Check()
      }, [])
 
      return (
@@ -81,7 +86,10 @@ export default function Profile1( { navigation }) {
 
                               <View style={{marginBottom: 20, backgroundColor: 'white', height: 50, width: 400, borderRadius: 20, justifyContent:'center', shadowColor: "#000",shadowOffset: {width: 0,height: 1,},shadowOpacity: 0.22,shadowRadius: 2.22,elevation: 3,}}>
                                    <TouchableOpacity>
-                                        <Text style={{marginLeft: 30, color:'red'}} variant='titleMedium'>Logout</Text>
+                                        <Text style={{marginLeft: 30, color:'red'}} variant='titleMedium' onPress={async () => {
+                                             const token = await SecureStore.setItemAsync('token', '')
+                                             navigation.replace('Login')
+                                        }}>Logout</Text>
                                    </TouchableOpacity>
                               </View>
                          </View>

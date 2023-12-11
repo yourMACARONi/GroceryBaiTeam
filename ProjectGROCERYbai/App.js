@@ -11,10 +11,10 @@ import { PaperProvider } from 'react-native-paper';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import Login1 from './Components/Login1';
-import Product from './Components/ProductInfo';
 import Home1 from './Components/Home1';
 import Profile1 from './Components/Profile1';
-
+import Product from './Components/Container/Product'
+import Search from './Components/Container/Search';
 
 
 const Stack = createNativeStackNavigator();
@@ -77,9 +77,10 @@ export default function App() {
 
     <Stack.Screen
               name="AddProduct"
-              component={Add}
+              component={Product}
               options={{
-                headerShown: false
+                headerShown: true,
+                title: ''
               }}
               />  
 

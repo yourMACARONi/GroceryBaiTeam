@@ -70,7 +70,11 @@ export default function Home1( { navigation } ) {
                          <View style={style.itemContainer}>
                          {
                               product.map((items, index) => {
-                                   return <Container display={setDisplay} name={items.product.title} price={items.product.price} image={items.product.image_url} key={index} onPress={() => (Alert.alert('Item Information', `${items.product.title} ${items.product.price}` ))} />
+                                   return <Container display={setDisplay} name={items.product.title} price={items.product.price} image={items.product.image_url} key={index} onPress={
+                                        () => {
+                                             navigation.navigate('AddProduct', {name: items.product.title, price: items.product.price, image: items.product.image_url})
+                                        }
+                                   } />
                               })
                          }
 
