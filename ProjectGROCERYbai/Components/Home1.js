@@ -1,52 +1,46 @@
-import {View, KeyboardAvoidingView, TouchableOpacity, StyleSheet, ScrollView, Image, Alert, TextInput} from 'react-native'
+import {View, KeyboardAvoidingView, TouchableOpacity, StyleSheet, ScrollView, Image, Alert, TextInput, RefreshControl, ActivityIndicator} from 'react-native'
 import {Button, Text, Searchbar, Chip} from 'react-native-paper'
+
+import React from 'react'
 
 import Container from './Container/Container'
 import { useState, useEffect } from 'react'
+
+import URL from '../api/constants'
+
+import { products, chooseCategory, searchProduct }  from '../api/product/products'
 
 const category_list = ["Fresh Meat & Seafoods", "Fresh Produce", "Frozen Goods", "Ready To Heat & Eat Items", "Ready to Cook", "Chilled & Dairy Items", "International Goods","Bakery", "Pantry", "Snacks", "Beverage", "Health & Beauty", "Babies & Kids", "Home Care", "DIY/Hardware", "Pet Care", "Health & Hygiene Essentials"]
 
 
 export default function Home1( { navigation } ) {
      const [search, setSearch] = useState()
+     const [isLoading, setLoading] = useState(false)
+     const [isDisplay, setDisplay] = useState('flex')
 
      const [product, setProduct] = useState([])
 
      function item(item) {
-          Alert.alert("You selected an item", item)
           selectCategory(item)
      }
 
      useEffect(() => {
           // write your code here, it's like componentWillMount
           loadItem();
-
       }, [])
 
      async function loadItem() {
-          const response = await fetch('http://localhost:3000/api/category')
-
-          const data = await response.json()
-
-          setProduct([...data])
+          products(setProduct, setLoading)
      }
      
      async function selectCategory(name) {
-          
-          const response =  await fetch(`http://localhost:3000/api/category?category=${encodeURIComponent(name)}`)
-
-          const data = await response.json()
-          
-          setProduct([...data])
+          chooseCategory(name, setProduct, setLoading)
      }
 
      async function searchItem(name) {
-          
-          const response =  await fetch(`http://localhost:3000/api/search?item=${encodeURIComponent(name)}`)
+          if (name.length == 0) return Alert.alert("Empty Search", "Please input desired item")
 
-          const data = await response.json()
-          
-          setProduct([...data])
+          searchProduct(name, setProduct, setLoading)
      }
 
      return (
@@ -54,8 +48,7 @@ export default function Home1( { navigation } ) {
           <View style={{flex: 1, margin: 100}}>
                <View style={{marginBottom: 10}}>
                     <View>
-                         <TextInput placeholder='Search Item' onChangeText={(value) => {setSearch(value)}} value={search} style={{width: 400}} />
-                         <Button onPress={() => (searchItem(search))}>search</Button>
+                         <Searchbar onIconPress={() => (searchItem(search))} placeholder='Search Item' onChangeText={(value) => {setSearch(value)}} value={search} style={{width: 400}} />
                     </View>
                </View>
 
@@ -72,12 +65,12 @@ export default function Home1( { navigation } ) {
                </View>
                
                <View style={{flex: 1, justifyContent:'flex-start'}}>
+                    <ActivityIndicator size={'large'} animating={isLoading} style={style.loading}/>
                     <ScrollView>
                          <View style={style.itemContainer}>
-
                          {
                               product.map((items, index) => {
-                                   return <Container name={items.product.title} price={items.product.price} image={items.product.image_url} key={index} onPress={() => (Alert.alert('Item Information', `${items.product.title} ${items.product.price}` ))} />
+                                   return <Container display={setDisplay} name={items.product.title} price={items.product.price} image={items.product.image_url} key={index} onPress={() => (Alert.alert('Item Information', `${items.product.title} ${items.product.price}` ))} />
                               })
                          }
 
@@ -97,9 +90,19 @@ const style = StyleSheet.create({
           alignItems: "center",
      },
      itemContainer: {
+          justifyContent:'center',
           flexDirection: 'row', 
           flexWrap: 'wrap', 
           justifyContent:'space-evenly'
-     }
+     },
 
+     loading: {
+          position: 'absolute',
+          left: 0,
+          right: 0,
+          top: 0,
+          bottom: 0,
+          alignItems: 'center',
+          justifyContent: 'center'
+        }
 })

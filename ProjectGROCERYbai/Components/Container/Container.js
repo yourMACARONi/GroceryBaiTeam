@@ -14,7 +14,7 @@ function Container(item) {
      }
 
      return (
-          <TouchableOpacity onPress={item.onPress}>
+          <TouchableOpacity onPress={item.onPress} style={{display: `${item.display}`}}>
                <View style={style.container}>
                     <View>
                          <Image  source={item.image} style={{ height: 100, width: 100, margin: 20}} contentFit='cover' transition={1000} placeholder={blurhash}/>
@@ -33,7 +33,8 @@ export default Container;
 const style = StyleSheet.create({
      container: 
      {
-          backgroundColor: 'white', 
+          backgroundColor: 'white',
+          display: 'flex',
           width: 150, 
           height: 250, 
           alignItems: 'center', 
