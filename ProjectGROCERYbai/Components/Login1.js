@@ -1,9 +1,17 @@
-import { Button, TextInput, Text} from 'react-native-paper'
+import { Button, TextInput, Text, HelperText} from 'react-native-paper'
 import { View, TouchableOpacity, KeyboardAvoidingView, StyleSheet, Image, Alert } from 'react-native'
+import { Form, Formik } from 'formik'
+import { loginSchema } from '../utils/schema'
+
+import { Login } from '../api/account/login'
+
+import * as SecureStore from 'expo-secure-store';
 
 
 
-export default function Login1() {
+
+
+export default function Login1( { navigation }) {
      return (
           <KeyboardAvoidingView style={style.container} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
                <View style={{margin: 100}}>
@@ -13,37 +21,64 @@ export default function Login1() {
                <View>
                     <Image source={require('../assets/gorcerybai.png')} style={{height: 250, width: 250}}></Image>
                </View>
-               
                <View style={style.inputContainer}>
-                    <View>
-                         <TextInput
-                         mode='outlined'
-                         activeOutlineColor='green'
-                         placeholder='Enter your Email'
-                         style={style.Input}>
+                    <Formik
+                    onSubmit={ async (values)=> {
+                         const userLogin =  await Login(JSON.stringify(values))
 
-                         </TextInput>
-                         
-                         <TextInput
-                         mode='outlined'
-                         activeOutlineColor='green'
-                         placeholder='Enter Your Password'
-                         secureTextEntry={true}
-                         style={style.Input}>
+                         if (userLogin.error) return Alert.alert("User and Password is Invalid", userLogin.message)
 
-                         </TextInput>
-                    </View>
+                         const token = await SecureStore.setItemAsync('token', userLogin.token)
 
-                    <Button 
-                    mode='elevated'
-                    onPress={()=>(Alert.alert("ASds"))}
-                    icon={'login'}
-                    textColor='black'
-                    buttonColor='white'
-                    style={{
-                         width:250,
-                         margin: 5
-                    }}>Sign In</Button>
+                         navigation.replace('Profile')
+                    }}
+                    validationSchema={loginSchema}
+                    initialValues={{email: '', password: ''}}>
+                         {
+                              ({ handleChange, values, handleBlur, handleSubmit, errors, touched }) => (
+                                   <View style={{alignItems: 'center'}}>
+                                        <View>
+                                             <TextInput
+                                                  mode='outlined'
+                                                  activeOutlineColor='green'
+                                                  placeholder='Enter your Email'
+                                                  onChangeText={handleChange('email')}
+                                                  value={values.email}
+                                                  error={errors.email && touched.password}
+                                                  onBlur={handleBlur('email')}
+                                                  style={style.Input}>
+                                             </TextInput>
+                                             <HelperText type='error'>{errors.email}</HelperText>
+                                        </View>
+                                        <View>
+                                             <TextInput
+                                                  mode='outlined'
+                                                  activeOutlineColor='green'
+                                                  placeholder='Enter Your Password'
+                                                  secureTextEntry={true}
+                                                  onChangeText={handleChange('password')}
+                                                  value={values.password}
+                                                  error={errors.email && touched.password}
+                                                  onBlur={handleBlur('password')}
+                                                  style={style.Input}>
+                                             </TextInput>
+                                             <HelperText type='error'>{errors.password}</HelperText>
+                                        </View>
+                                             <Button   
+                                                  mode='elevated'
+                                                  onPress={handleSubmit}
+                                                  icon={'login'}
+                                                  textColor='black'
+                                                  buttonColor='white'
+                                                  style={{
+                                                       width:250,
+                                                       margin: 5
+                                                  }}>Sign In
+                                             </Button>
+                                   </View>
+                              )
+                         }
+                    </Formik>
 
                     <Button 
                     mode='elevated'
@@ -64,6 +99,7 @@ export default function Login1() {
                          </TouchableOpacity>
                     </View>
                </View>
+               
 
           </KeyboardAvoidingView>
      )
