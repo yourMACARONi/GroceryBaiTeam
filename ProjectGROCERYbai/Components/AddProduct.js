@@ -1,66 +1,36 @@
-import { View, Text, Image, Pressable } from "react-native";
-import * as React from "react";
-import COLORS from "../Constants/colors";
-import Button from "../Buttons/Button";
-import { Ionicons } from "@expo/vector-icons";
-import { TouchableOpacity } from "react-native";
-import { AddProduct } from ".";
-// import { BlurView } from "@react-native-community/blur";
+import { View, KeyboardAvoidingView, Image, StyleSheet, Alert,} from 'react-native'
+import { Button, Text } from 'react-native-paper'
 
-const Add = ({ navigation }) => {
-  return (
-    <View
-      style={{
-        flex: 1,
-        backgroundColor:COLORS.green
 
-      }}
-      // colors={[COLORS.orange, COLORS.primary]}
-    >
-     
-      
-        <View style={{backgroundColor: "white",
-    padding: 2, flexDirection:'row', justifyContent:'space-around', borderWidth:1}}>
-      <TouchableOpacity
-      onPress={()=>navigation.navigate("Home")}
-      >
-      <Ionicons name="home" size={35} color={COLORS.black}/>
-      </TouchableOpacity>
+export default function AddProduct(props) {
 
-      <TouchableOpacity
-      onPress={()=>navigation.navigate("List")}
-      >
-      <Ionicons name="list" size={35} color={COLORS.black}/>
-      </TouchableOpacity>
+     const { title, label, buttonTitle} = props
+     return (
+          
+          <KeyboardAvoidingView style={style.container}>
+               <View>
+                    <View style={{alignItems: 'center'}}>
+                         <Image source={require('../assets/gorcerybai.png')} style={{width: 400, height: 400}} />
+                         <Text style={{fontSize:30, fontWeight:'bold'}} >No Product Added</Text>
+                    </View>
+                    <View style={{alignItems: 'center'}}>
+                         <Text variant='titleMedium'>{title}</Text>
+                         <Text variant='labelLarge'>{label}</Text>
+                    </View>
 
-      <TouchableOpacity
-      onPress={()=>navigation.navigate("AddProduct")}
-      >
-      <Ionicons name="add" size={40} color={COLORS.black}/>
-      </TouchableOpacity>
+                    <View style={{marginTop: 250, alignItems: 'center'}}>
+                         <Button mode='contained-tonal' buttonColor='#18B127' textColor='white'
+                         onPress={props.onPress} style={{width: 314, height:70, justifyContent: 'center'}}>{"Add Product"}</Button>
+                    </View>
+               </View>
+          </KeyboardAvoidingView>
+     )
+}
 
-      <TouchableOpacity 
-      onPress={()=>navigation.navigate("Cart")}
-      >
-      <Ionicons name="cart" size={35} color={COLORS.black}/>
-      </TouchableOpacity>
-
-      <TouchableOpacity
-      onPress={()=>navigation.navigate("Profile")}
-      >
-      <Ionicons name="person-circle" size={35} color={COLORS.black}/>
-      </TouchableOpacity>
-           
-           
-           
-           
-           
-      </View>
-
-    </View>
-
-    
-  );
-};
-
-export default Add;
+const style = StyleSheet.create({
+     container: {
+          backgroundColor: "#F5F5F8",
+          flex: 1,
+          justifyContent: "center",
+          alignItems: "center",
+     },})

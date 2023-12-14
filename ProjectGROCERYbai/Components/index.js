@@ -7,6 +7,10 @@ import List from "./List";
 import AddProduct from "./AddProduct";
 import Cart from "./Cart";
 import Profile from "./Profile";
+import MyFavorite from "./MyFavorite";
+import Sidebar from "./Sidebar";
+import Footer from "./Footer";
+import AddProductContainer from "./AddProductContainer";
 
 export { Login,
             Register,
@@ -16,4 +20,8 @@ export { Login,
                             List,
                                 AddProduct,
                                         Cart,
-                                            Profile}
+                                            Profile,
+                                        MyFavorite,
+                                    Sidebar,
+                                Footer,
+                            AddProductContainer}

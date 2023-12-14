@@ -67,13 +67,13 @@ export default function Profile1( { navigation }) {
                          <View>
                               <View style={{marginBottom: 20, backgroundColor: 'white', height: 50, width: 400, borderRadius: 20, justifyContent:'center', shadowColor: "#000",shadowOffset: {width: 0,height: 1,},shadowOpacity: 0.22,shadowRadius: 2.22,elevation: 3,}}>
                                    <TouchableOpacity>
-                                        <Text style={{marginLeft: 30}} variant='titleMedium'>Added Items</Text>
+                                        <Text style={{marginLeft: 30}} variant='titleMedium'>Grocery List</Text>
                                    </TouchableOpacity>
                               </View>
 
                               <View style={{marginBottom: 20, backgroundColor: 'white', height: 50, width: 400, borderRadius: 20, justifyContent:'center', shadowColor: "#000",shadowOffset: {width: 0,height: 1,},shadowOpacity: 0.22,shadowRadius: 2.22,elevation: 3,}}>
                                    <TouchableOpacity>
-                                        <Text style={{marginLeft: 30}} variant='titleMedium'>Password Reset</Text>
+                                        <Text style={{marginLeft: 30}} variant='titleMedium'>Add Custom Product</Text>
                                    </TouchableOpacity>
                               </View>
 

@@ -1,320 +1,204 @@
-import { View, Text, Image, Pressable } from "react-native";
-import * as React from "react";
-import COLORS from "../Constants/colors";
-import Button from "../Buttons/Button";
-import { useState } from "react";
-import { Ionicons } from "@expo/vector-icons";
-import { TouchableOpacity, ScrollView } from "react-native";
-import { SearchBar } from "@rneui/base";
+import {
+  View,
+  KeyboardAvoidingView,
+  TouchableOpacity,
+  StyleSheet,
+  ScrollView,
+  Image,
+  Alert,
+  TextInput,
+  RefreshControl,
+  ActivityIndicator,
+} from "react-native";
+import { Button, Text, Searchbar, Chip } from "react-native-paper";
 
-import Product from "./ProductInfo";
+import React from "react";
 
 import Container from "./Container/Container";
+import { useState, useEffect } from "react";
 
-// import { BlurView } from "@react-native-community/blur";
+import URL from "../api/constants";
 
-const Home = ({ navigation }) => {
+import {
+  products,
+  chooseCategory,
+  searchProduct,
+} from "../api/product/products";
+
+import COLORS from "../Constants/colors";
+
+import { Ionicons } from "@expo/vector-icons";
+
+const category_list = [
+  "Fresh Meat & Seafoods",
+  "Fresh Produce",
+  "Frozen Goods",
+  "Ready To Heat & Eat Items",
+  "Ready to Cook",
+  "Chilled & Dairy Items",
+  "International Goods",
+  "Bakery",
+  "Pantry",
+  "Snacks",
+  "Beverage",
+  "Health & Beauty",
+  "Babies & Kids",
+  "Home Care",
+  "DIY/Hardware",
+  "Pet Care",
+  "Health & Hygiene Essentials",
+];
+
+export default function Home({ navigation }) {
   const [search, setSearch] = useState();
+  const [isLoading, setLoading] = useState(false);
+  const [isDisplay, setDisplay] = useState("flex");
 
-  const updateSearch = (search) => {
-    setSearch(search);
-  };
+  const [product, setProduct] = useState([]);
+
+  function item(item) {
+    selectCategory(item);
+  }
+
+  useEffect(() => {
+    // write your code here, it's like componentWillMount
+    loadItem();
+  }, []);
+
+  async function loadItem() {
+    products(setProduct, setLoading);
+  }
+
+  async function selectCategory(name) {
+    chooseCategory(name, setProduct, setLoading);
+  }
+
+  async function searchItem(name) {
+    if (name.length == 0)
+      return Alert.alert("Empty Search", "Please input desired item");
+
+    searchProduct(name, setProduct, setLoading);
+  }
 
   return (
-    <View
-      style={{
-        flex: 1,
-        // backgroundColor:COLORS.white
-      }}
-      // colors={[COLORS.orange, COLORS.primary]}
+    <KeyboardAvoidingView
+      style={style.container}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
-      <View
-        style={{ flexDirection: "row", marginHorizontal: 10, marginTop: 10 }}
-      >
-        {/* Burger menu */}
-        <TouchableOpacity onPress={() => console.log("pressed")}>
-          <Ionicons name="menu" size={30} color={COLORS.black} />
-        </TouchableOpacity>
-      </View>
-      {/* Home Text */}
-      <View style={{ marginTop: 10, marginHorizontal: 20 }}>
-        <Text style={{ fontSize: 20 }}>Start Listing</Text>
-
-        <Text style={{ fontSize: 25, fontWeight: "bold" }}>TODAY!</Text>
-      </View>
-
-      {/* Search Bar */}
-
-      <View style={{ padding: 10 }}>
-        <SearchBar
-          platform="android"
-          onChangeText={(newVal) => setSearch(newVal)}
-          onClearText={() => console.log(onClearText())}
-          placeholder="Search product here..."
-          placeholderTextColor="#888"
-          cancelButtonTitle="Cancel"
-          onCancel={() => console.log(onCancel())}
-          value={search}
-        />
-      </View>
-
-      <ScrollView>
-        <View style={{
-                    flex: 3, 
-                    flexDirection: 'row', 
-                    justifyContent:'flex-start', 
-                    flexWrap:'wrap', 
-                    justifyContent: 'center'
-        }}>
-
-        <Container name="Nutella Spread Hazelnut | 350g" age="100"/>
-        <Container name="Nutella Spread Hazelnut | 350g" age="100"/>
-        <Container name="Nutella Spread Hazelnut | 350g" age="100"/>
-
+      <View style={{ flex: 1, margin: 100 }}>
+        <View style={{ marginBottom: 10}}>
+          <View>
+            <Searchbar
+              onIconPress={() => searchItem(search)}
+              placeholder="Search Item"
+              onChangeText={(value) => {
+                setSearch(value);
+              }}
+              value={search}
+              style={{ width: 400 }}
+            />
+          </View>
         </View>
-      </ScrollView>
 
-
-
-      {/* Category Selection */}
-
-      <View
-        style={{
-          flexDirection: "row",
-          height: 40,
-        }}
-      >
-        <ScrollView horizontal={true}>
-          <TouchableOpacity onPress={() => navigation.navigate("")}>
-            <Text
-              style={{
-                fontSize: 20,
-                color: COLORS.green1,
-
-                marginLeft: 6,
-              }}
-            >
-              Fruits
-            </Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={() => navigation.navigate("")}>
-            <Text
-              style={{
-                fontSize: 20,
-                color: COLORS.green1,
-
-                marginLeft: 20,
-              }}
-            >
-              Vegetables
-            </Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={() => navigation.navigate("")}>
-            <Text
-              style={{
-                fontSize: 20,
-                color: COLORS.green1,
-
-                marginLeft: 20,
-              }}
-            >
-              Meat
-            </Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={() => navigation.navigate("")}>
-            <Text
-              style={{
-                fontSize: 20,
-                color: COLORS.green1,
-
-                marginLeft: 20,
-              }}
-            >
-              Poultry
-            </Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={() => navigation.navigate("")}>
-            <Text
-              style={{
-                fontSize: 20,
-                color: COLORS.green1,
-
-                marginLeft: 20,
-              }}
-            >
-              Fish
-            </Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={() => navigation.navigate("")}>
-            <Text
-              style={{
-                fontSize: 20,
-                color: COLORS.green1,
-
-                marginLeft: 20,
-              }}
-            >
-              Milk
-            </Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={() => navigation.navigate("")}>
-            <Text
-              style={{
-                fontSize: 20,
-                color: COLORS.green1,
-
-                marginLeft: 20,
-              }}
-            >
-              Cans
-            </Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={() => navigation.navigate("")}>
-            <Text
-              style={{
-                fontSize: 20,
-                color: COLORS.green1,
-
-                marginLeft: 20,
-              }}
-            >
-              Oil
-            </Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={() => navigation.navigate("")}>
-            <Text
-              style={{
-                fontSize: 20,
-                color: COLORS.green1,
-
-                marginLeft: 20,
-              }}
-            >
-              Cheese
-            </Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={() => navigation.navigate("")}>
-            <Text
-              style={{
-                fontSize: 20,
-                color: COLORS.green1,
-
-                marginLeft: 20,
-              }}
-            >
-              Egg
-            </Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={() => navigation.navigate("")}>
-            <Text
-              style={{
-                fontSize: 20,
-                color: COLORS.green1,
-
-                marginLeft: 20,
-              }}
-            >
-              Sugar
-            </Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={() => navigation.navigate("")}>
-            <Text
-              style={{
-                fontSize: 20,
-                color: COLORS.green1,
-
-                marginLeft: 20,
-              }}
-            >
-              Rice
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.navigate("")}>
-            <Text
-              style={{
-                fontSize: 20,
-                color: COLORS.green1,
-
-                marginLeft: 20,
-                marginRight: 20,
-              }}
-            >
-              Beverages
-            </Text>
-          </TouchableOpacity>
-        </ScrollView>
-      </View>
-
-      {/* Product container/ Box */}
- 
-    <View style={{width:'100%', height:'auto', backgroundColor:'red', padding:5, flexDirection:'row',flexWrap:'wrap'}}>
-     
-      <View style={{width:'50%', height:'50%', padding:5, backgroundColor: COLORS.green1}}>
-        <View style={{width:'100%', height:'100%', padding:5, backgroundColor:COLORS.primary}}>
-              <View style={{width:'80%', height:'50%', borderRadius:100, marginHorizontal:19, backgroundColor:COLORS.orange}}>
-
-              </View>
+        <View style={{ flexDirection: "row", height: 40 }}>
+          <ScrollView horizontal={true}>
+            {category_list.map((items, index) => {
+              return (
+                <TouchableOpacity
+                  style={{ margin: 10 }}
+                  key={index}
+                  value={items}
+                  onPress={() => item(items)}
+                >
+                  <Text>{items}</Text>
+                </TouchableOpacity>
+              );
+            })}
+          </ScrollView>
         </View>
-      </View>
-      
-      </View>
-     
 
-      {/* The logout button temporary */}
-      {/* <View style={{ flex: 1, alignContent: "center" }}>
-        <Button
-          title="Log Out"
-          onPress={() => navigation.navigate("Login")}
+        <View style={{ flex: 1, justifyContent: "flex-start" }}>
+          <ActivityIndicator
+            size={"large"}
+            animating={isLoading}
+            style={style.loading}
+          />
+          <ScrollView>
+            <View style={style.itemContainer}>
+              {product.map((items, index) => {
+                return (
+                  <Container
+                    display={setDisplay}
+                    name={items.product.title}
+                    price={items.product.price}
+                    image={items.product.image_url}
+                    key={index}
+                    onPress={() => {
+                      navigation.navigate("AddProduct", {
+                        name: items.product.title,
+                        price: items.product.price,
+                        image: items.product.image_url,
+                      });
+                    }}
+                  />
+                );
+              })}
+            </View>
+          </ScrollView>
+          {/* Bottom navigation */}
+        </View>
+
+        <View
           style={{
-            marginTop: 10,
-            width: "100",
+            backgroundColor: "white",
+            width: "100%",
+            padding: 2,
+            flexDirection: "row",
+            justifyContent: "space-around",
           }}
-        />
-      </View> */}
+        >
+          <TouchableOpacity onPress={() => navigation.navigate("Home")}>
+            <Ionicons name="home-outline" size={35} color={COLORS.black} />
+          </TouchableOpacity>
 
-      <View
-        style={{
-          backgroundColor: "white",
-          padding: 2,
-          flexDirection: "row",
-          justifyContent: "space-around",
-        }}
-      >
-        {/* Bottom Icons navigations */}
-        <TouchableOpacity onPress={() => navigation.navigate("Home")}>
-          <Ionicons name="home" size={35} color={COLORS.black} />
-        </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate("MyFavorite")}>
+            <Ionicons name="heart-outline" size={35} color={COLORS.black} />
+          </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => navigation.navigate("List")}>
-          <Ionicons name="list" size={35} color={COLORS.black} />
-        </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate("Cart")}>
+            <Ionicons name="time-outline" size={35} color={COLORS.black} />
+          </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => navigation.navigate("AddProduct")}>
-          <Ionicons name="add" size={40} color={COLORS.black} />
-        </TouchableOpacity>
-
-        <TouchableOpacity onPress={() => navigation.navigate("Cart")}>
-          <Ionicons name="cart" size={35} color={COLORS.black} />
-        </TouchableOpacity>
-
-        <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
-          <Ionicons name="person-circle" size={35} color={COLORS.black} />
-        </TouchableOpacity>
-        
+          <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
+            <Ionicons name="person-outline" size={35} color={COLORS.black} />
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
+    </KeyboardAvoidingView>
   );
-};
+}
 
-export default Home;
+const style = StyleSheet.create({
+  container: {
+    backgroundColor: "#fff",
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  itemContainer: {
+    justifyContent: "center",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-evenly",
+  },
+
+  loading: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});
