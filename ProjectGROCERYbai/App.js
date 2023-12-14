@@ -14,7 +14,8 @@ import {
   Profile,
   MyFavorite,
   Sidebar,
-  Footer
+  Footer,
+  ProductInfo
 } from "./Components";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Add from "./Components/AddProduct";
@@ -32,6 +33,10 @@ import Empty from "./Components/Empty";
 import FavoriteImageContainer from "./Components/FavoriteImageContainer";
 import HistoryImageContainer from "./Components/HistoryImageContainer";
 import AddProductContainer from "./Components/AddProductContainer";
+import WeekContainer from "./Components/WeekContainer";
+import ListContainer from "./Components/ListContainer";
+import GroceryListSample from "./Components/GroceryListSample";
+
 
 
 const Stack = createNativeStackNavigator();
@@ -44,7 +49,7 @@ export default function App() {
           <Stack.Navigator initialRouteName="Welcome">
             <Stack.Screen
               name="Welcome"
-              component={AddProductContainer}
+              component={GroceryListSample}
               options={{
                 headerShown: false,
               }}

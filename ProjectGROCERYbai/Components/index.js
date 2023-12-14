@@ -11,6 +11,7 @@ import MyFavorite from "./MyFavorite";
 import Sidebar from "./Sidebar";
 import Footer from "./Footer";
 import AddProductContainer from "./AddProductContainer";
+import ProductInfo from "./ProductInfo";
 
 export { Login,
             Register,
@@ -24,4 +25,5 @@ export { Login,
                                         MyFavorite,
                                     Sidebar,
                                 Footer,
-                            AddProductContainer}
+                            AddProductContainer,
+                        ProductInfo}

@@ -78,7 +78,8 @@ export default function AddProductContainer(props) {
             mode="contained-tonal"
             buttonColor="#18B127"
             textColor="white"
-            onPress={props.onPress}
+            // onPress={props.onPress}
+            onPress={()=>(Alert.alert("ASds"))}
             style={{ width: 314, height: 70, justifyContent: "center" }}
           >
             {"Upload"}
