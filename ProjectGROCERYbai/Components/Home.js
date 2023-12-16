@@ -148,6 +148,8 @@ export default function Home({ navigation }) {
           {/* Bottom navigation */}
         </View>
 
+
+{/* Tab Navigation */}
         <View
           style={{
             backgroundColor: "white",

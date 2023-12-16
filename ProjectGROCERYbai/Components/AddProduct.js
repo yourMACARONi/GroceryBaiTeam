@@ -11,7 +11,7 @@ export default function AddProduct(props) {
                <View>
                     <View style={{alignItems: 'center'}}>
                          <Image source={require('../assets/gorcerybai.png')} style={{width: 400, height: 400}} />
-                         <Text style={{fontSize:30, fontWeight:'bold'}} >No Product Added</Text>
+                         
                     </View>
                     <View style={{alignItems: 'center'}}>
                          <Text variant='titleMedium'>{title}</Text>
@@ -20,7 +20,7 @@ export default function AddProduct(props) {
 
                     <View style={{marginTop: 250, alignItems: 'center'}}>
                          <Button mode='contained-tonal' buttonColor='#18B127' textColor='white'
-                         onPress={props.onPress} style={{width: 314, height:70, justifyContent: 'center'}}>{"Add Product"}</Button>
+                         onPress={props.onPress} style={{width: 314, height:70, justifyContent: 'center'}}>{buttonTitle}</Button>
                     </View>
                </View>
           </KeyboardAvoidingView>

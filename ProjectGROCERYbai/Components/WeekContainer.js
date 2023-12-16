@@ -6,7 +6,7 @@ import { Text, Icon } from 'react-native-paper'
 export default function WeekContainer(props) {
 
      return (
-     <View style={{marginBottom: 10}}>
+     <View style={{flex:1, alignItems:'center', justifyContent:'center' }}>
           <TouchableOpacity onPress={props.onPress}>
                <View style={style.weekContainer}>
                     <View style={{margin: 20}}>

@@ -17,43 +17,7 @@ const Cart = ({ navigation }) => {
       // colors={[COLORS.orange, COLORS.primary]}
     >
      
-        <View style={{backgroundColor: "white",
-    padding: 2, flexDirection:'row', justifyContent:'space-around', borderWidth:1}}>
-      <TouchableOpacity
-      onPress={()=>navigation.navigate("Home")}
-      >
-      <Ionicons name="home" size={35} color={COLORS.black}/>
-      </TouchableOpacity>
-
-      <TouchableOpacity
-      onPress={()=>navigation.navigate("List")}
-      >
-      <Ionicons name="list" size={35} color={COLORS.black}/>
-      </TouchableOpacity>
-
-      <TouchableOpacity
-      onPress={()=>navigation.navigate("AddProduct")}
-      >
-      <Ionicons name="add" size={40} color={COLORS.black}/>
-      </TouchableOpacity>
-
-      <TouchableOpacity 
-      onPress={()=>navigation.navigate("Cart")}
-      >
-      <Ionicons name="cart" size={35} color={COLORS.black}/>
-      </TouchableOpacity>
-
-      <TouchableOpacity
-      onPress={()=>navigation.navigate("Profile")}
-      >
-      <Ionicons name="person-circle" size={35} color={COLORS.black}/>
-      </TouchableOpacity>
-           
-           
-           
-           
-           
-      </View>
+   
 
     </View>
 

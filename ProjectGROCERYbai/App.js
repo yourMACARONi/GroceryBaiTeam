@@ -49,7 +49,7 @@ export default function App() {
           <Stack.Navigator initialRouteName="Welcome">
             <Stack.Screen
               name="Welcome"
-              component={GroceryListSample}
+              component={AddProductContainer}
               options={{
                 headerShown: false,
               }}
