@@ -22,20 +22,17 @@ import Add from "./Components/AddProduct";
 import { PaperProvider } from "react-native-paper";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
-import Login1 from "./Components/Login1";
+
 
 import Profile1 from "./Components/Profile1";
 import Product from "./Components/Container/Product";
 import Search from "./Components/Container/Search";
 import Planner from "./Components/Container/WeeklyPlanner/Planner";
-import FavoriteTest from "./Components/FavoriteTest";
+
 import Empty from "./Components/Empty";
-import FavoriteImageContainer from "./Components/FavoriteImageContainer";
-import HistoryImageContainer from "./Components/HistoryImageContainer";
 import AddProductContainer from "./Components/AddProductContainer";
 import WeekContainer from "./Components/WeekContainer";
 import ListContainer from "./Components/ListContainer";
-import GroceryListSample from "./Components/GroceryListSample";
 
 
 
@@ -49,7 +46,7 @@ export default function App() {
           <Stack.Navigator initialRouteName="Welcome">
             <Stack.Screen
               name="Welcome"
-              component={Home}
+              component={Login}
               options={{
                 headerShown: false,
               }}
@@ -57,7 +54,7 @@ export default function App() {
 
             <Stack.Screen
               name="Login"
-              component={Login1}
+              component={Login}
               options={{
                 headerShown: false,
               }}

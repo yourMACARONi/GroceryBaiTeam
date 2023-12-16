@@ -3,7 +3,7 @@ import Register from "./Register";
 import Welcome from "./Welcome";
 import Recovery from "./Recovery";
 import Home from "./Home";
-import List from "./List";
+
 import AddProduct from "./AddProduct";
 
 import Profile from "./Profile";
@@ -18,7 +18,7 @@ export { Login,
                 Welcome,
                     Recovery,
                         Home,
-                            List,
+                        
                                 AddProduct,
                                        
                                             Profile,
