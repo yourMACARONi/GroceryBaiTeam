@@ -23,7 +23,7 @@ import { PaperProvider } from "react-native-paper";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import Login1 from "./Components/Login1";
-import Home1 from "./Components/Home1";
+
 import Profile1 from "./Components/Profile1";
 import Product from "./Components/Container/Product";
 import Search from "./Components/Container/Search";
@@ -49,7 +49,7 @@ export default function App() {
           <Stack.Navigator initialRouteName="Welcome">
             <Stack.Screen
               name="Welcome"
-              component={AddProductContainer}
+              component={Home}
               options={{
                 headerShown: false,
               }}
@@ -104,14 +104,7 @@ export default function App() {
               }}
             />
 
-            <Stack.Screen
-              name="Cart"
-              component={Cart}
-              options={{
-                headerShown: false,
-              }}
-            />
-
+         
             <Stack.Screen
               name="Profile"
               component={Profile1}

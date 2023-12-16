@@ -87,7 +87,7 @@ export default function Home({ navigation }) {
     >
       <View style={{ flex: 1, margin: 100 }}>
         <View style={{ marginBottom: 10}}>
-          <View>
+          <View style={{flexDirection:'row'}} >
             <Searchbar
               onIconPress={() => searchItem(search)}
               placeholder="Search Item"
@@ -97,6 +97,11 @@ export default function Home({ navigation }) {
               value={search}
               style={{ width: 400 }}
             />
+            <TouchableOpacity onPress={() => navigation.navigate("MyFavorite")}
+            style={{padding:10}}
+            >
+            <Ionicons name="heart-outline" size={35} color={COLORS.black} />
+          </TouchableOpacity>
           </View>
         </View>
 
@@ -150,21 +155,19 @@ export default function Home({ navigation }) {
 
 
 {/* Tab Navigation */}
-        <View
+        
+      </View>
+      <View
           style={{
             backgroundColor: "white",
             width: "100%",
             padding: 2,
             flexDirection: "row",
-            justifyContent: "space-around",
+            justifyContent: "space-evenly",
           }}
         >
           <TouchableOpacity onPress={() => navigation.navigate("Home")}>
             <Ionicons name="home-outline" size={35} color={COLORS.black} />
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={() => navigation.navigate("MyFavorite")}>
-            <Ionicons name="heart-outline" size={35} color={COLORS.black} />
           </TouchableOpacity>
 
           <TouchableOpacity onPress={() => navigation.navigate("Cart")}>
@@ -175,7 +178,6 @@ export default function Home({ navigation }) {
             <Ionicons name="person-outline" size={35} color={COLORS.black} />
           </TouchableOpacity>
         </View>
-      </View>
     </KeyboardAvoidingView>
   );
 }

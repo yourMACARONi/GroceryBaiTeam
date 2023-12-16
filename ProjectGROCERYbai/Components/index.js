@@ -5,7 +5,7 @@ import Recovery from "./Recovery";
 import Home from "./Home";
 import List from "./List";
 import AddProduct from "./AddProduct";
-import Cart from "./Cart";
+
 import Profile from "./Profile";
 import MyFavorite from "./MyFavorite";
 import Sidebar from "./Sidebar";
@@ -20,7 +20,7 @@ export { Login,
                         Home,
                             List,
                                 AddProduct,
-                                        Cart,
+                                       
                                             Profile,
                                         MyFavorite,
                                     Sidebar,
