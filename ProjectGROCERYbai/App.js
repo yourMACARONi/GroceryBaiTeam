@@ -24,7 +24,6 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 
 
 
-import Profile1 from "./Components/Profile1";
 import Product from "./Components/Container/Product";
 import Search from "./Components/Container/Search";
 import Planner from "./Components/Container/WeeklyPlanner/Planner";
@@ -33,6 +32,8 @@ import Empty from "./Components/Empty";
 import AddProductContainer from "./Components/AddProductContainer";
 import WeekContainer from "./Components/WeekContainer";
 import ListContainer from "./Components/ListContainer";
+
+import Register1 from "./Components/Register1";
 
 
 
@@ -46,7 +47,7 @@ export default function App() {
           <Stack.Navigator initialRouteName="Welcome">
             <Stack.Screen
               name="Welcome"
-              component={Login}
+              component={Register1}
               options={{
                 headerShown: false,
               }}
@@ -101,17 +102,17 @@ export default function App() {
               }}
             />
 
-         
             <Stack.Screen
-              name="Profile"
-              component={Profile1}
+              name="Footer"
+              component={Footer}
               options={{
                 headerShown: false,
               }}
             />
+
             <Stack.Screen
-              name="Footer"
-              component={Footer}
+              name="Profile"
+              component={Profile}
               options={{
                 headerShown: false,
               }}

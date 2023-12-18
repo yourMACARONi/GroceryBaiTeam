@@ -1,65 +1,130 @@
-import { View, Text, Image, Pressable } from "react-native";
-import * as React from "react";
-import COLORS from "../Constants/colors";
-import Button from "../Buttons/Button";
-import { Ionicons } from "@expo/vector-icons";
-import { TouchableOpacity } from "react-native";
-// import { BlurView } from "@react-native-community/blur";
+import { View, KeyboardAvoidingView, StyleSheet, ActivityIndicator, Alert, Image, TouchableOpacity} from "react-native";
 
-const Profile = ({ navigation }) => {
-  return (
-    <View
-      style={{
-        flex: 1,
-        backgroundColor:COLORS.white
+import { TextInput, Text } from "react-native-paper";
 
-      }}
-      // colors={[COLORS.orange, COLORS.primary]}
-    >
-     
-      
-        <View style={{backgroundColor: "white",
-    padding: 2, flexDirection:'row', justifyContent:'space-around', borderWidth:1}}>
-      <TouchableOpacity
-      onPress={()=>navigation.navigate("Home")}
-      >
-      <Ionicons name="home" size={35} color={COLORS.black}/>
-      </TouchableOpacity>
+import * as SecureStore from 'expo-secure-store'
 
-      <TouchableOpacity
-      onPress={()=>navigation.navigate("List")}
-      >
-      <Ionicons name="list" size={35} color={COLORS.black}/>
-      </TouchableOpacity>
+import URL from '../api/constants'
+import { useEffect, useState } from "react";
 
-      <TouchableOpacity
-      onPress={()=>navigation.navigate("AddProduct")}
-      >
-      <Ionicons name="add" size={40} color={COLORS.black}/>
-      </TouchableOpacity>
 
-      <TouchableOpacity 
-      onPress={()=>navigation.navigate("Cart")}
-      >
-      <Ionicons name="cart" size={35} color={COLORS.black}/>
-      </TouchableOpacity>
 
-      <TouchableOpacity
-      onPress={()=>navigation.navigate("Profile")}
-      >
-      <Ionicons name="person-circle" size={35} color={COLORS.black}/>
-      </TouchableOpacity>
-           
-           
-           
-           
-           
-      </View>
+export default function Profile1( { navigation }) {
+     const [user, setUser] = useState([]);
 
-    </View>
+     useEffect(() => {
+          async function userMe() {
+               console.log( await SecureStore.getItemAsync('token'))
+               const response = await fetch(`${URL}/api/user/me`, {
+                    headers: {
+                         'Authorization': `Bearer ${ await SecureStore.getItemAsync('token')}`
+                    }
+               })
 
-    
-  );
-};
+               if (response.status == 403) {navigation.replace('Login'); return Alert.alert("Token has been expired", "Please Login Again")}
 
-export default Profile;
+               const message =  await response.json()
+
+               setUser(message)
+          }
+          
+          async function Check() {
+               if (await SecureStore.getItemAsync('token') == '') {navigation.replace('Login'); return Alert.alert("Token has been expired", "Please Login Again")}
+               userMe()
+          }
+
+          Check()
+     }, [])
+
+     return (
+     <KeyboardAvoidingView style={style.container}>
+          <View>
+               <View style={{flex: 1, margin: 100, alignItems: 'center'}}>
+                    <View style={{marginBottom: 100}}>
+                         <Text variant="titleLarge" style={{fontWeight: 'bold'}}>Personal details</Text>
+                    </View>
+
+                    <View style={{alignItems: 'center'}}>
+                         <TouchableOpacity style={{marginBottom: 50}}>
+                              <View style={{marginBottom: 10, flexDirection: 'row', justifyContent: 'space-between'}}>
+                                   <Text variant="titleSmall">Personal Information</Text>
+                                   <Text variant="titleSmall" style={{color: 'green'}}>change</Text>
+                              </View>
+
+                              <View style={{borderColor: 'black', backgroundColor: 'white', width: 400, height: 200, borderRadius: 20, flexDirection:'row', shadowColor: "#000",shadowOffset: {width: 0,height: 1,},shadowOpacity: 0.22,shadowRadius: 2.22,elevation: 3,}}>
+                                   <View style={{ backgroundColor:'white', borderRadius: 10, alignItems:'center', height: 100, marginTop: 50, marginLeft: 50}}>
+                                        <Image source={require('../assets/google.png')} style={{ height: 100, width: 100}}></Image>
+                                   </View>
+
+                                   <View style={{margin: 50, marginTop: 70}}>
+                                        <Text variant='titleMedium'>{`${user.first_name} ${user.last_name}`}</Text>
+                                        <Text variant='titleSmall'>{user.email}</Text>
+                                   </View>
+
+                              </View>
+                         </TouchableOpacity>
+                    
+                         <View>
+                              <View style={{marginBottom: 20, backgroundColor: 'white', height: 50, width: 400, borderRadius: 20, justifyContent:'center', shadowColor: "#000",shadowOffset: {width: 0,height: 1,},shadowOpacity: 0.22,shadowRadius: 2.22,elevation: 3,}}>
+                                   <TouchableOpacity>
+                                        <Text style={{marginLeft: 30}} variant='titleMedium'>Grocery List</Text>
+                                   </TouchableOpacity>
+                              </View>
+
+                              <View style={{marginBottom: 20, backgroundColor: 'white', height: 50, width: 400, borderRadius: 20, justifyContent:'center', shadowColor: "#000",shadowOffset: {width: 0,height: 1,},shadowOpacity: 0.22,shadowRadius: 2.22,elevation: 3,}}>
+                                   <TouchableOpacity>
+                                        <Text style={{marginLeft: 30}} variant='titleMedium'>Add Custom Product</Text>
+                                   </TouchableOpacity>
+                              </View>
+
+                              <View style={{marginBottom: 20, backgroundColor: 'white', height: 50, width: 400, borderRadius: 20, justifyContent:'center', shadowColor: "#000",shadowOffset: {width: 0,height: 1,},shadowOpacity: 0.22,shadowRadius: 2.22,elevation: 3,}}>
+                                   <TouchableOpacity>
+                                        <Text style={{marginLeft: 30}} variant='titleMedium'>FAQ</Text>
+                                   </TouchableOpacity>
+                              </View>
+
+
+                              <View style={{marginBottom: 20, backgroundColor: 'white', height: 50, width: 400, borderRadius: 20, justifyContent:'center', shadowColor: "#000",shadowOffset: {width: 0,height: 1,},shadowOpacity: 0.22,shadowRadius: 2.22,elevation: 3,}}>
+                                   <TouchableOpacity>
+                                        <Text style={{marginLeft: 30, color:'red'}} variant='titleMedium' onPress={async () => {
+                                             const token = await SecureStore.setItemAsync('token', '')
+                                             navigation.pop()
+                                        }}>Logout</Text>
+                                   </TouchableOpacity>
+                              </View>
+                         </View>
+
+                    </View>
+               </View>
+          </View>
+     </KeyboardAvoidingView>
+     )
+}
+
+
+
+const style = StyleSheet.create({
+     container: {
+          backgroundColor: "#fff",
+          flex: 1,
+          justifyContent: "center",
+          alignItems: "center",
+     },
+     ImageContainer: {
+     },
+     boldText: {
+          fontWeight: 'bold'
+     },
+     Input: {
+          backgroundColor: 'white',
+          width: 300,
+          borderRadius: 100,
+          margin: 10
+     },
+     inputContainer: {
+          textAlign: 'center',
+          alignItems: 'center',
+          flex: 2,
+          margin: 1
+     }
+})
