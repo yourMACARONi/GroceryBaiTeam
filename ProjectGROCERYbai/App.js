@@ -47,7 +47,7 @@ export default function App() {
           <Stack.Navigator initialRouteName="Welcome">
             <Stack.Screen
               name="Welcome"
-              component={Register1}
+              component={Login}
               options={{
                 headerShown: false,
               }}

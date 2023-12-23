@@ -14,12 +14,12 @@ import * as SecureStore from 'expo-secure-store';
 export default function Register1( { navigation }) {
      return (
       <KeyboardAvoidingView style={style.container} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-      <View style={{margin: 100}}>
-           <Text variant='titleLarge' style={style.boldText}>Sign Un</Text>
+      <View style={{margin: 40}}>
+           <Text variant='titleLarge' style={style.boldText}>Sign Up</Text>
       </View>
 
       <View>
-           <Image source={require('../assets/gorcerybai.png')} style={{height: 250, width: 250}}></Image>
+           <Image source={require('../assets/gorcerybai.png')} style={{height: 220, width: 250}}></Image>
       </View>
       <View style={style.inputContainer}>
            <Formik
@@ -97,12 +97,12 @@ export default function Register1( { navigation }) {
            <Button 
            mode='elevated'
            onPress={()=>(Alert.alert("ASds"))}
-           icon={'login'}
+          //  icon={'login'}
            textColor='white'
            buttonColor='#00BF63'
            style={{
                 width:250,
-                marginTop: 5,
+               //  marginTop: 5,
                 margin: 5
            }}>Reset Password</Button>
 
@@ -137,13 +137,13 @@ Input: {
     backgroundColor: 'white',
     width: 300,
     borderRadius: 100,
-    margin: 10
+   
 },
 inputContainer: {
     textAlign: 'center',
     alignItems: 'center',
-    flex: 2,
-    margin: 1
+
+   
 }
 
 })

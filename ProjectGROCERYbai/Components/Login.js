@@ -14,7 +14,7 @@ import * as SecureStore from 'expo-secure-store';
 export default function Login1( { navigation }) {
      return (
       <KeyboardAvoidingView style={style.container} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-      <View style={{margin: 100}}>
+      <View style={{margin: 20}}>
            <Text variant='titleLarge' style={style.boldText}>Sign In</Text>
       </View>
 
@@ -88,7 +88,7 @@ export default function Login1( { navigation }) {
            buttonColor='#00BF63'
            style={{
                 width:250,
-                marginTop: 5,
+               //  marginTop: 5,
                 margin: 5
            }}>Reset Password</Button>
 
@@ -123,13 +123,12 @@ Input: {
     backgroundColor: 'white',
     width: 300,
     borderRadius: 100,
-    margin: 10
+   
 },
 inputContainer: {
     textAlign: 'center',
     alignItems: 'center',
-    flex: 2,
-    margin: 1
+    
 }
 
 })

@@ -1,7 +1,7 @@
 import { View, Text, Image, Pressable } from "react-native";
 import React from "react";
 import COLORS from "../Constants/colors";
-import Button from "../Buttons/Button";
+import Button from "../Buttons/WelcomeButton";
 
 const Welcome = ({ navigation }) => {
   return (
@@ -16,40 +16,45 @@ const Welcome = ({ navigation }) => {
         <Image
           source={require("../assets/GBtext.png")}
           style={{
-            height: 300,
+            height: 250,
             width: 400,
           }}
         ></Image>
+
+        <View style={{marginTop:50}}>
         <Image
           source={require("../assets/finaGB.png")}
           style={{ 
+           
             height: 530, 
             width: 450,
           }}
         ></Image>
+        </View>
       </View>
       
       <View style={{
-        alignItems: 'center'
+        alignItems: 'center',
+        
       }}>
-
+       
       <Button
         title="Get Started"
         onPress={() => navigation.navigate("Login")}
         style={{
-          marginTop: "auto",
+          marginVertical: -180,
           marginHorizontal: 50,
-          width: 280,
-          padding: 60,
-          borderRadius: 30,
+          width: 300,
+          borderRadius: 20,
         }}
       />
+    
       </View>
 
       <View
         style={{
           flexDirection: "row",
-          marginTop: 60,
+          marginTop: 10,
           justifyContent: "center",
         }}
       ></View>
