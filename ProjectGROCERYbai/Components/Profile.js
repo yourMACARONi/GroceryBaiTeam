@@ -46,12 +46,12 @@ export default function Profile1( { navigation }) {
 
                     <View style={{alignItems: 'center'}}>
                          <TouchableOpacity style={{marginBottom: 50}}>
-                              <View style={{marginBottom: 10, flexDirection: 'row', justifyContent: 'space-between'}}>
+                              <View style={{marginBottom: 10, flexDirection: 'row', justifyContent: 'space-evenly'}}>
                                    <Text variant="titleSmall">Personal Information</Text>
                                    <Text variant="titleSmall" style={{color: 'green'}}>change</Text>
                               </View>
 
-                              <View style={{borderColor: 'black', backgroundColor: 'white', width: 400, height: 200, borderRadius: 20, flexDirection:'row', shadowColor: "#000",shadowOffset: {width: 0,height: 1,},shadowOpacity: 0.22,shadowRadius: 2.22,elevation: 3,}}>
+                              <View style={{borderColor: 'black', backgroundColor: 'white', width: 350, height: 200, borderRadius: 20, flexDirection:'row', shadowColor: "#000",shadowOffset: {width: 0,height: 1,},shadowOpacity: 0.22,shadowRadius: 2.22,elevation: 3,}}>
                                    <View style={{ backgroundColor:'white', borderRadius: 10, alignItems:'center', height: 100, marginTop: 50, marginLeft: 50}}>
                                         <Image source={require('../assets/google.png')} style={{ height: 100, width: 100}}></Image>
                                    </View>

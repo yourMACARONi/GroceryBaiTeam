@@ -12,13 +12,14 @@ import Sidebar from "./Sidebar";
 import Footer from "./Footer";
 import AddProductContainer from "./AddProductContainer";
 import ProductInfo from "./ProductInfo";
+import History from "./History";
 
 export { Login,
             Register,
                 Welcome,
                     Recovery,
                         Home,
-                        
+                            History,
                                 AddProduct,
                                        
                                             Profile,

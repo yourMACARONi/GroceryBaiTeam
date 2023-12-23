@@ -15,7 +15,7 @@ import {
   MyFavorite,
   Sidebar,
   Footer,
-  ProductInfo
+  ProductInfo,History
 } from "./Components";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Add from "./Components/AddProduct";
@@ -47,7 +47,7 @@ export default function App() {
           <Stack.Navigator initialRouteName="Welcome">
             <Stack.Screen
               name="Welcome"
-              component={Login}
+              component={Profile}
               options={{
                 headerShown: false,
               }}
@@ -113,6 +113,13 @@ export default function App() {
             <Stack.Screen
               name="Profile"
               component={Profile}
+              options={{
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen
+              name="History"
+              component={History}
               options={{
                 headerShown: false,
               }}

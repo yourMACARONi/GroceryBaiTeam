@@ -85,7 +85,7 @@ export default function Home({ navigation }) {
       style={style.container}
       behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
-      <View style={{ flex: 1, margin: 100 }}>
+      <View style={{ flex: 1, margin: 50 }}>
         <View style={{ marginBottom: 10}}>
           <View style={{flexDirection:'row'}} >
             <Searchbar
@@ -95,7 +95,7 @@ export default function Home({ navigation }) {
                 setSearch(value);
               }}
               value={search}
-              style={{ width: 400 }}
+              style={{ width: 300 }}
             />
             <TouchableOpacity onPress={() => navigation.navigate("MyFavorite")}
             style={{padding:10}}
@@ -105,7 +105,7 @@ export default function Home({ navigation }) {
           </View>
         </View>
 
-        <View style={{ flexDirection: "row", height: 40 }}>
+        <View style={{ flexDirection: "row", height: 50 }}>
           <ScrollView horizontal={true}>
             {category_list.map((items, index) => {
               return (
@@ -170,7 +170,7 @@ export default function Home({ navigation }) {
             <Ionicons name="home-outline" size={35} color={COLORS.black} />
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => navigation.navigate("Cart")}>
+          <TouchableOpacity onPress={() => navigation.navigate("History")}>
             <Ionicons name="time-outline" size={35} color={COLORS.black} />
           </TouchableOpacity>
 
