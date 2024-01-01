@@ -83,7 +83,7 @@ export default function Login1( { navigation }) {
            <Button 
            mode='elevated'
            onPress={()=>(Alert.alert("ASds"))}
-           icon={'login'}
+          //  icon={'login'}
            textColor='white'
            buttonColor='#00BF63'
            style={{

@@ -41,11 +41,11 @@ export default function Profile1( { navigation }) {
           <View>
                <View style={{flex: 1, margin: 100, alignItems: 'center'}}>
                     <View style={{marginBottom: 100}}>
-                         <Text variant="titleLarge" style={{fontWeight: 'bold'}}>Personal details</Text>
+                         <Text variant="titleLarge" style={{fontWeight: 'bold'}}>My Profile</Text>
                     </View>
 
                     <View style={{alignItems: 'center'}}>
-                         <TouchableOpacity style={{marginBottom: 50}}>
+                         <TouchableOpacity style={{marginBottom: 20}}>
                               <View style={{marginBottom: 10, flexDirection: 'row', justifyContent: 'space-evenly'}}>
                                    <Text variant="titleSmall">Personal Information</Text>
                                    <Text variant="titleSmall" style={{color: 'green'}}>change</Text>

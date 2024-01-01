@@ -11,7 +11,7 @@ export default function Empty(props) {
                <View>
                     <View style={{alignItems: 'center'}}>
                          <Image source={require('../assets/gorcerybai.png')} style={{width: 200, height: 200}} />
-                         <EmptyText>Let's add some task!</EmptyText>
+                       
                     </View>
                     <View style={{alignItems: 'center'}}>
                          <Text variant='titleMedium'>{title}</Text>

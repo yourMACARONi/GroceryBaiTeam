@@ -108,7 +108,7 @@ export default function Register1( { navigation }) {
 
            <View style={{flexDirection:'row', margin: 5, justifyContent: 'space-between'}}>
                 <Text>Doesn't have account?</Text>
-                <TouchableOpacity style={{marginLeft: 10}} onPress={ () => navigation.navigate('Register')}>
+                <TouchableOpacity style={{marginLeft: 10}} onPress={ () => navigation.navigate('Login')}>
                      <Text style={{color: 'green'}}>Register Here</Text>
                 </TouchableOpacity>
            </View>

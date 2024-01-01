@@ -1,286 +1,139 @@
-import { View, Text, Image, TextInput, TouchableOpacity } from "react-native";
-import React from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
-import COLORS from "../Constants/colors";
-import { Ionicons } from "@expo/vector-icons";
-import { useState } from "react";
-import Checkbox from "expo-checkbox";
-import Button from "../Buttons/loginButton";
-import { Pressable } from "react-native";
+import { Button, TextInput, Text, HelperText} from 'react-native-paper'
+import { View, TouchableOpacity, KeyboardAvoidingView, StyleSheet, Image, Alert } from 'react-native'
+import { Form, Formik } from 'formik'
+import { registerSchema } from '../utils/schema'
 
-const Register = ({ navigation }) => {
-  const [passwordShown, setPasswordShown] = useState(false);
-  const [isChecked, setIsChecked] = useState(false);
-  return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.white }}>
-      <View style={{ flex: 1, marginHorizontal: 50 }}>
-        <View>
-          <View style={{ flexDirection: "row" }}>
-            <TouchableOpacity
-              onPress={() => navigation.navigate("Welcome")}
-              style={{ marginTop: 20 }}
-            >
-              <Ionicons name="arrow-undo" size={24} color={COLORS.black} />
-            </TouchableOpacity>
+import { Login } from '../api/account/login'
 
-            <Text
-              style={{
-                fontSize: 37,
-                fontWeight: "bold",
-                marginVertical: 12,
-                marginHorizontal: 85,
-                color: COLORS.black,
-              }}
-            >
-              Sign Up
-            </Text>
-          </View>
-        </View>
-        <View
-          style={{
-            flex: 1,
-            alignItems: "center",
-            justifyContent: "center",
-            marginTop: 140,
-          }}
-        >
-          <Image
-            source={require("../assets/gorcerybai.png")}
-            style={{ height: 300, width: 320 }}
-          ></Image>
-        </View>
-        <View
-          style={{
-            marginTop: 60,
-          }}
-        >
-          <View style={{ marginBottom: 1 }}>
-            <Text
-              style={{
-                fontSize: 20,
-                fontWeight: 400,
-              }}
-            >
-              Email
-            </Text>
+import * as SecureStore from 'expo-secure-store';
 
-            <View
-              style={{
-                width: "100%",
-                height: 48,
-                borderColor: COLORS.black,
-                borderWidth: 1,
-                borderRadius: 5,
-                alignItems: "center",
-                justifyContent: "center",
-                paddingLeft: 22,
-              }}
-            >
-              <TextInput
-                placeholder="Enter your email address"
-                placeholderTextColor={COLORS.black}
-                keyboardType="email-address"
-                style={{
-                  width: "100%",
-                }}
-              />
-            </View>
-          </View>
 
-          <View
-            style={{
-              marginBottom: 1,
-            }}
-          >
-            <View style={{ marginBottom: 1 }}>
-              <Text
-                style={{
-                  fontSize: 20,
-                  fontWeight: 400,
-                }}
-              >
-                Username
-              </Text>
 
-              <View
-                style={{
-                  width: "100%",
-                  height: 48,
-                  borderColor: COLORS.black,
-                  borderWidth: 1,
-                  borderRadius: 5,
-                  alignItems: "center",
-                  justifyContent: "center",
-                  paddingLeft: 22,
-                }}
-              >
-                <TextInput
-                  placeholder="Enter your username"
-                  placeholderTextColor={COLORS.black}
-                  keyboardType="email-address"
-                  style={{
-                    width: "100%",
-                  }}
-                />
-              </View>
-            </View>
-          </View>
 
-          <View style={{ marginBottom: 1 }}>
-            <Text
-              style={{
-                fontSize: 20,
-                fontWeight: 400,
-              }}
-            >
-              Password
-            </Text>
 
-            <View
-              style={{
-                width: "100%",
-                height: 48,
-                borderColor: COLORS.black,
-                borderWidth: 1,
-                borderRadius: 5,
-                alignItems: "center",
-                justifyContent: "center",
-                paddingLeft: 22,
-              }}
-            >
-              <TextInput
-                placeholder="Enter your password"
-                placeholderTextColor={COLORS.black}
-                secureTextEntry={!passwordShown}
-                style={{
-                  width: "100%",
-                }}
-              />
-              <TouchableOpacity
-                onPress={() => setPasswordShown(!passwordShown)}
-                style={{
-                  position: "absolute",
-                  right: 12,
-                }}
-              >
-                {passwordShown == false ? (
-                  <Ionicons name="eye-off" size={24} color={COLORS.black} />
-                ) : (
-                  <Ionicons name="eye" size={24} color={COLORS.black} />
-                )}
-              </TouchableOpacity>
-            </View>
-          </View>
-
-          <View style={{ marginBottom: 1 }}>
-            <Text
-              style={{
-                fontSize: 20,
-                fontWeight: 400,
-              }}
-            >
-              Re-Enter Password
-            </Text>
-
-            <View
-              style={{
-                width: "100%",
-                height: 48,
-                borderColor: COLORS.black,
-                borderWidth: 1,
-                borderRadius: 5,
-                alignItems: "center",
-                justifyContent: "center",
-                paddingLeft: 22,
-              }}
-            >
-              <TextInput
-                placeholder="Re-Enter your password"
-                placeholderTextColor={COLORS.black}
-                secureTextEntry={!passwordShown}
-                style={{
-                  width: "100%",
-                }}
-              />
-              <TouchableOpacity
-                onPress={() => setPasswordShown(!passwordShown)}
-                style={{
-                  position: "absolute",
-                  right: 12,
-                }}
-              >
-                {passwordShown == false ? (
-                  <Ionicons name="eye-off" size={24} color={COLORS.black} />
-                ) : (
-                  <Ionicons name="eye" size={24} color={COLORS.black} />
-                )}
-              </TouchableOpacity>
-            </View>
-          </View>
-
-          <View
-            style={{
-              flexDirection: "row",
-            }}
-          >
-            <Checkbox
-              style={{ marginRight: 8, marginTop: 11 }}
-              value={isChecked}
-              onValueChange={setIsChecked}
-              color={isChecked ? COLORS.green : undefined}
-            />
-
-            <Text style={{ marginTop: 11, fontSize: 16 }}>
-              I agree to the terms and conditions
-            </Text>
-          </View>
-          <View>
-            <Text></Text>
-          </View>
-
-          <Button
-            title="SIGN UP"
-            onPress={() => console.log("pressed")}
-            style={{
-              marginHorizontal: 50,
-              width: 280,
-              padding: 60,
-              borderRadius: 30,
-            }}
-          />
-          
-        </View>
-
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "center",
-            marginVertical: 22,
-          }}
-        >
-          <Text style={{ fontSize: 16, color: COLORS.black }}>
-            Already have an account?
-          </Text>
-          <Pressable onPress={() => navigation.navigate("Login")}>
-            <Text
-              style={{
-                fontSize: 16,
-                color: COLORS.green1,
-                fontWeight: "bold",
-                marginLeft: 6,
-              }}
-            >
-              Login
-            </Text>
-          </Pressable>
-        </View>
-        <View>
-          <Text></Text>
-        </View>
-        
+export default function Register( { navigation }) {
+     return (
+      <KeyboardAvoidingView style={style.container} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+      <View style={{margin: 40}}>
+           <Text variant='titleLarge' style={style.boldText}>Sign Up</Text>
       </View>
-    </SafeAreaView>
-  );
-};
 
-export default Register;
+      <View>
+           <Image source={require('../assets/gorcerybai.png')} style={{height: 220, width: 250}}></Image>
+      </View>
+      <View style={style.inputContainer}>
+           <Formik
+           onSubmit={ async (values)=> {
+                const userSignUp =  await Login(JSON.stringify(values))
+
+                if (userSignUp.error) return Alert.alert("Form is Empty", userSignUp.message)
+
+                const token = await SecureStore.setItemAsync('token', userSignUp.token)
+
+                navigation.replace('Planner')
+           }}
+           validationSchema={registerSchema}
+           initialValues={{email: '',fullName: '', password: '',}}>
+                {
+                     ({ handleChange, values, handleBlur, handleSubmit, errors, touched }) => (
+                          <View style={{alignItems: 'center'}}>
+                               <View>
+                                    <TextInput
+                                         mode='outlined'
+                                         activeOutlineColor='green'
+                                         placeholder='Enter Your Email'
+                                         onChangeText={handleChange('email')}
+                                         value={values.email}
+                                         error={errors.email && touched.password}
+                                         onBlur={handleBlur('email')}
+                                         style={style.Input}>
+                                    </TextInput>
+                                    <HelperText type='error'>{errors.email}</HelperText>
+                               </View>
+                               <View>
+                                    <TextInput
+                                         mode='outlined'
+                                         activeOutlineColor='green'
+                                         placeholder='Enter Full Name'
+                                         onChangeText={handleChange('fullName')}
+                                         value={values.fullName}
+                                         error={errors.email && errors.fullName && touched.password}
+                                         onBlur={handleBlur('fullName')}
+                                         style={style.Input}>
+                                    </TextInput>
+                                    <HelperText type='error'>{errors.fullName}</HelperText>
+                               </View>
+                               <View>
+                                    <TextInput
+                                         mode='outlined'
+                                         activeOutlineColor='green'
+                                         placeholder='Enter Your Password'
+                                         secureTextEntry={true}
+                                         onChangeText={handleChange('password')}
+                                         value={values.password}
+                                         error={errors.email && errors.fullName && touched.password}
+                                         onBlur={handleBlur('password')}
+                                         style={style.Input}>
+                                    </TextInput>
+                                    <HelperText type='error'>{errors.password}</HelperText>
+                               </View>
+                               
+                                    <Button   
+                                         mode='elevated'
+                                         onPress={handleSubmit}
+                                         icon={'login'}
+                                         textColor='black'
+                                         buttonColor='white'
+                                         style={{
+                                              width:250,
+                                              margin: 5
+                                         }}>Register
+                                    </Button>
+                          </View>
+                     )
+                }
+           </Formik>
+
+           
+
+           <View style={{flexDirection:'row', margin: 5, justifyContent: 'space-between'}}>
+                <Text>Already have an account?</Text>
+                <TouchableOpacity style={{marginLeft: 10}} onPress={ () => navigation.navigate('Login')}>
+                     <Text style={{color: 'green'}}>Login Here</Text>
+                </TouchableOpacity>
+           </View>
+      </View>
+      
+
+ </KeyboardAvoidingView>
+     )
+}
+
+
+
+const style = StyleSheet.create({
+  container: {
+    backgroundColor: "#fff",
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+},
+ImageContainer: {
+},
+boldText: {
+    fontWeight: 'bold'
+},
+Input: {
+    backgroundColor: 'white',
+    width: 300,
+    borderRadius: 100,
+   
+},
+inputContainer: {
+    textAlign: 'center',
+    alignItems: 'center',
+
+   
+}
+
+})

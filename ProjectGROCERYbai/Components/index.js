@@ -13,6 +13,7 @@ import Footer from "./Footer";
 import AddProductContainer from "./AddProductContainer";
 import ProductInfo from "./ProductInfo";
 import History from "./History";
+import AddProductToList from "./AddProductToList";
 
 export { Login,
             Register,
@@ -27,4 +28,5 @@ export { Login,
                                     Sidebar,
                                 Footer,
                             AddProductContainer,
-                        ProductInfo}
+                        ProductInfo,
+                        AddProductToList}

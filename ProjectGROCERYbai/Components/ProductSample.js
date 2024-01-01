@@ -3,7 +3,7 @@ import { Text, Button, TextInput} from 'react-native-paper'
 import { View, Image, StyleSheet } from 'react-native'
 
 
-export default function Product() {
+export default function ProductSample() {
      return (
           <View style={style.Container}>
                <View style={{
@@ -20,7 +20,7 @@ export default function Product() {
                     elevation: 2,
                     margin: 10
                }}>
-                    <Image source={require('../assets/gorcerybai.png')} style={{height: 100, width: 100}}></Image>
+                    <Image source={require('../assets/grocerylist.png')} style={{height: 250, width: 250}}></Image>
                </View>
 
                <View style={{alignItems: 'center'}}>
@@ -41,19 +41,8 @@ const style = StyleSheet.create({
           justifyContent:'center',
           alignItems: 'center',
 
-          borderRadius:10,
-          borderColor: 'white',
+        
 
-          backgroundColor: 'white',
-          shadowColor: "#000",
-          shadowOffset: {
-               width: 0,
-               height: 8,
-          },
-          shadowOpacity: 0.46,
-          shadowRadius: 11.14,
-
-          elevation: 17,
           
      }
 })
